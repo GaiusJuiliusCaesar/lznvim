@@ -1,0 +1,48 @@
+---
+#
+# Pre-commit config file.
+#
+
+ci:
+  autofix_prs: false
+  autoupdate_schedule: weekly
+default_language_version:
+  python: python3
+default_stages: [pre-commit]
+repos:
+  #
+  # Markdown
+  #
+  - repo: https://github.com/executablebooks/mdformat
+    rev: 0.7.21
+    hooks:
+      - id: mdformat
+        additional_dependencies:
+          - mdformat-ruff
+  #
+  # StyLua
+  #
+  - repo: https://github.com/JohnnyMorganz/StyLua
+    rev: v2.0.2
+    hooks:
+      - id: stylua
+  #
+  # Check List.
+  #
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: check-added-large-files
+      - id: check-case-conflict
+      - id: check-json
+      - id: check-merge-conflict
+      - id: check-symlinks
+      - id: check-toml
+      - id: check-yaml
+        args: [ '--unsafe' ]
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+      - id: check-shebang-scripts-are-executable
+      - id: no-commit-to-branch
+        args: [ '--branch', 'main' ]
+...
